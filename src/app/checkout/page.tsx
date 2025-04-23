@@ -28,7 +28,6 @@ export default function Checkout() {
     address2: '',
     city: '',
     postalCode: '',
-    country: 'United Kingdom',
     deliveryDate: '',
     deliveryNotes: '',
     cardNumber: '',
@@ -297,26 +296,7 @@ export default function Checkout() {
                           </div>
                         </div>
                         
-                        <div>
-                          <label htmlFor="country" className="block text-sm font-medium text-gray-700 mb-1">
-                            Country *
-                          </label>
-                          <select
-                            id="country"
-                            name="country"
-                            value={formData.country}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all appearance-none bg-white"
-                            style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20' stroke='%236B7280'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 0.75rem center', backgroundSize: '1rem' }}
-                          >
-                            <option value="United Kingdom">United Kingdom</option>
-                            <option value="United States">United States</option>
-                            <option value="Canada">Canada</option>
-                            <option value="France">France</option>
-                            <option value="Germany">Germany</option>
-                          </select>
-                        </div>
+                        
                       </div>
                     </div>
                     
@@ -344,7 +324,7 @@ export default function Checkout() {
                         <p className="text-sm text-gray-600">{formData.address1}</p>
                         {formData.address2 && <p className="text-sm text-gray-600">{formData.address2}</p>}
                         <p className="text-sm text-gray-600">{formData.city}, {formData.postalCode}</p>
-                        <p className="text-sm text-gray-600">{formData.country}</p>
+                        
                       </div>
                     </div>
                   </div>
@@ -398,7 +378,7 @@ export default function Checkout() {
                         />
                         <div className="ml-3">
                           <label htmlFor="delivery-next-day" className="block text-sm font-medium">
-                            Next Day Delivery (KES 5.95)
+                            Next Day Delivery (KES 595)
                           </label>
                           <p className="text-sm text-gray-600">Order before 5pm for next working day delivery</p>
                         </div>
@@ -413,7 +393,7 @@ export default function Checkout() {
                         />
                         <div className="ml-3">
                           <label htmlFor="delivery-same-day" className="block text-sm font-medium">
-                            Same Day Delivery (KES 9.95)
+                            Same Day Delivery (KES 995)
                           </label>
                           <p className="text-sm text-gray-600">Available for select London postcodes. Order before 2pm.</p>
                         </div>

@@ -48,7 +48,7 @@ export default function Hero() {
 
   return (
     <div className="relative overflow-hidden">
-      <div className="w-full h-[60vh] md:h-[75vh] relative bg-gray-700">
+      <div className="w-full h-[65vh] md:h-[75vh] relative bg-gray-700">
         {/* Animated Slideshow */}
         <motion.div
           initial={{ opacity: 0 }}
@@ -62,7 +62,7 @@ export default function Hero() {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+          <div className="absolute inset-0 bg-black/30 to-transparent"></div>
         </motion.div>
 
         {/* Content Overlay */}
@@ -72,12 +72,12 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="absolute inset-0 flex items-center justify-center text-center"
         >
-          <div className="max-w-2xl px-6  backdrop-blur-sm py-10 rounded-sm">
+          <div className="max-w-2xl md:px-6 md:py-10 ">
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.3 }}
-              className="text-white text-4xl md:text-6xl font-light uppercase tracking-widest mb-6 drop-shadow-lg"
+              className="text-white text-4xl md:text-6xl max-sm:text-3xl font-light uppercase tracking-widest mb-6 drop-shadow-lg"
             >
               {images[currentImageIndex].description}
             </motion.h1>
@@ -98,7 +98,7 @@ export default function Hero() {
               whileHover={{ scale: 1.05 }}
             >
               <Link href="/products" passHref>
-                <Button size="lg" className="px-8 py-3 bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 rounded-full shadow-lg">
+                <Button size="lg" className="px-8 py-3 max-sm:px-4 max-sm:text-sm uppercase max-sm:py-2 bg-white text-gray-900 hover:bg-gray-100 transition-all duration-300 rounded-full shadow-lg">
                   Explore Collection
                 </Button>
               </Link>

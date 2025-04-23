@@ -23,7 +23,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   return (
-    <div className="group relative flex flex-col">
+    <div className="group relative h-full  flex flex-col">
       <div className="aspect-square overflow-hidden rounded-sm bg-gray-100">
         <Link href={`/products/${product.slug}`}>
           <div className="h-full w-full relative">
@@ -49,14 +49,14 @@ export default function ProductCard({ product }: ProductCardProps) {
         </div>
       )}
       
-      <div className="mt-2 flex flex-col">
-        <Link href={`/products/${product.slug}`} className="uppercase text-sm font-medium">
+      <div className="mt-2 flex flex-1 flex-col">
+        <Link href={`/products/${product.slug}`} className="uppercase  text-sm font-medium">
           {product.name}
         </Link>
         <span className="text-sm">FROM  KES {product.price.toFixed(2)}</span>
       </div>
       
-      <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <div className="mt-2 sm:opacity-0 group-hover:opacity-100 transition-opacity duration-300">
         <Button 
           variant="primary" 
           size="sm" 
