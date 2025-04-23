@@ -1,6 +1,5 @@
 // src/components/layout/Layout.tsx
 import { ReactNode } from 'react';
-import Head from 'next/head';
 import Header from './Header';
 import Footer from './Footer';
 

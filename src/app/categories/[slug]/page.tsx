@@ -6,11 +6,6 @@ import { Product } from '@/types/product';
 import { notFound } from 'next/navigation';
 import React, { Usable } from 'react';
 
-interface CategoryPageProps {
-  params: {
-    slug: string;
-  };
-}
 
  const categories: Category[] = [
     {
@@ -164,9 +159,10 @@ const allProducts: Product[] = [
     category: 'vases',
   },
 ];
-export default function CategoryPage({ params }: CategoryPageProps) {
+export default function CategoryPage({ params }:{ params: Promise<{ id: string }> }) {
   const {slug} = React.use(params as unknown as Usable<{slug:string}>)
   const category = categories.find((c) => c.slug === slug);
+
   if (!category) {
     notFound(); // shows the 404 page
   }
