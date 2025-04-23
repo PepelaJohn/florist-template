@@ -12,6 +12,7 @@ export default function Checkout() {
   const { cart, cartTotal, clearCart } = useCart();
   const router = useRouter();
   const [activeStep, setActiveStep] = useState<'details' | 'delivery' | 'payment'>('details');
+  const [paymentMethod, setPaymentMethod] = useState<'mpesa' | 'card' >('mpesa');
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -27,7 +28,8 @@ export default function Checkout() {
     cardNumber: '',
     cardName: '',
     expiryDate: '',
-    cvv: ''
+    cvv: '',
+    phoneNumber: ''
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -481,153 +483,248 @@ export default function Checkout() {
                 </div>
                 
                 {activeStep === 'payment' && (
-                  <form onSubmit={handleSubmit}>
-                    <div className="bg-gray-50 p-4 rounded-md mb-6">
-                      <div className="flex items-center justify-between mb-4">
-                        <h3 className="font-medium">Payment Methods</h3>
-                        <div className="flex space-x-2">
-                          <svg className="h-8 w-auto" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="40" height="24" rx="4" fill="#1434CB"/>
-                            <path d="M15.2397 16.3413H12.623L10.1123 9.1244C10.0249 8.87261 9.86519 8.65187 9.64824 8.52222C9.02274 8.13226 8.31542 7.83282 7.5249 7.65869V7.30775H11.8325C12.3711 7.30775 12.7267 7.74219 12.8103 8.19471L13.984 13.2823L16.153 7.30775H18.6814L15.2397 16.3413Z" fill="white"/>
-                            <path d="M19.2202 16.3413H16.7726L18.7628 7.30775H21.2104L19.2202 16.3413Z" fill="white"/>
-                            <path d="M26.0933 7.57874C25.5547 7.57874 25.0347 7.74219 24.6792 8.02356C24.0723 8.45799 23.6359 9.16712 23.6359 10.0437C23.6359 11.2766 24.5103 11.982 25.638 12.3332C26.3453 12.5692 26.6822 12.8119 26.6822 13.1801C26.6822 13.7067 26.1436 13.9767 25.4363 13.9767C24.6384 13.9767 23.9496 13.7418 23.3427 13.3535L22.844 15.3655C23.451 15.7537 24.3254 15.9865 25.2183 15.9865C26.9253 15.9865 29.1482 15.223 29.1482 12.9294C29.1482 11.6965 28.2739 10.9169 27.0841 10.5287C26.3768 10.2926 26.0399 10.05 26.0399 9.68137C26.0399 9.19089 26.5784 8.92052 27.2643 8.92052C27.9717 8.92052 28.6374 9.1244 29.1345 9.33441L29.6331 7.3576C29.0679 7.14757 28.3197 7.02865 27.5985 7.02865C27.4466 7.0112 26.6822 7.0112 26.0933 7.57874Z" fill="white"/>
-                            <path d="M33.1661 7.30775L31.7932 13.2297L31.5609 14.5333H29.1272L31.6683 7.30775H33.1661Z" fill="white"/>
-                          </svg>
-                          <svg className="h-8 w-auto" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect width="40" height="24" rx="4" fill="#FF5F00"/>
-                            <path d="M14.5 16H25.5V8H14.5V16Z" fill="#FF5F00"/>
-                            <path d="M15.2001 12C15.2001 10.3 16.0001 8.8 17.2001 7.8C16.3001 7.1 15.2001 6.8 14.1001 6.8C10.8001 6.8 8.2001 9.2 8.2001 12.1C8.2001 15 10.8001 17.4 14.1001 17.4C15.3001 17.4 16.4001 17 17.2001 16.3C16.0001 15.2 15.2001 13.7 15.2001 12Z" fill="#EB001B"/>
-                            <path d="M31.8001 12.1C31.8001 15 29.2001 17.4 25.9001 17.4C24.7001 17.4 23.6001 17 22.8001 16.3C24.0001 15.3 24.8001 13.7 24.8001 12C24.8001 10.3 24.0001 8.8 22.8001 7.8C23.7001 7.1 24.8001 6.8 25.9001 6.8C29.2001 6.8 31.8001 9.2 31.8001 12.1Z" fill="#F79E1B"/>
-                          </svg>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="space-y-4">
-                      <div>
-                        <label htmlFor="cardName" className="block text-sm font-medium text-gray-700 mb-1">
-                          Name on Card *
-                        </label>
-                        <input
-                          type="text"
-                          id="cardName"
-                          name="cardName"
-                          value={formData.cardName}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
-                        />
-                      </div>
-                      
-                      <div>
-                        <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700 mb-1">
-                          Card Number *
-                        </label>
-                        <div className="relative">
-                          <input
-                            type="text"
-                            id="cardNumber"
-                            name="cardNumber"
-                            value={formData.cardNumber}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
-                            placeholder="1234 5678 9012 3456"
-                          />
-                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                            <svg className="h-5 w-auto" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <rect width="24" height="16" rx="2" fill="#F3F4F6"/>
-                              <path d="M7 10.5V11.5H6V10.5H7ZM10 10.5V11.5H8V10.5H10Z" fill="#6B7280"/>
-                              <path d="M13 10.5V11.5H11V10.5H13ZM16 10.5V11.5H14V10.5H16Z" fill="#6B7280"/>
-                              <path d="M19 10.5V11.5H17V10.5H19Z" fill="#6B7280"/>
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700 mb-1">
-                            Expiry Date *
-                          </label>
-                          <input
-                            type="text"
-                            id="expiryDate"
-                            name="expiryDate"
-                            value={formData.expiryDate}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
-                            placeholder="MM/YY"
-                          />
-                        </div>
-                        
-                        <div>
-                          <label htmlFor="cvv" className="block text-sm font-medium text-gray-700 mb-1">
-                            CVV *
-                          </label>
-                          <div className="relative">
-                            <input
-                              type="text"
-                              id="cvv"
-                              name="cvv"
-                              value={formData.cvv}
-                              onChange={handleInputChange}
-                              required
-                              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
-                              placeholder="123"
-                            />
-                            <button
-                              type="button"
-                              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
-                              title="CVV is the 3-digit security code on the back of your card"
-                            >
-                              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clipRule="evenodd" />
-                              </svg>
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-center mt-6 mb-6">
-                      <input
-                        type="checkbox"
-                        id="saveCard"
-                        className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
-                      />
-                      <label htmlFor="saveCard" className="ml-2 block text-sm text-gray-700">
-                        Save card details securely for next purchase
-                      </label>
-                    </div>
-                    
-                    <div className="mt-4">
-                      <Button 
-                        type="submit" 
-                        variant="primary" 
-                        fullWidth
-                        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-md hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-1 transition-all duration-300"
-                      >
-                        <span className="flex items-center justify-center">
-                          <span>Complete Order</span>
-                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
-                            <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                          </svg>
-                        </span>
-                      </Button>
-                    </div>
-                    
-                    <div className="mt-4 text-center">
-                      <p className="text-xs text-gray-500 flex items-center justify-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                        </svg>
-                        Your payment information is encrypted and secure
-                      </p>
-                    </div>
-                  </form>
-                )}
+  <form onSubmit={handleSubmit}>
+    <div className="bg-gray-50 p-4 rounded-md mb-6">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-medium">Payment Methods</h3>
+        <div className="flex space-x-2">
+          <svg className="h-8 w-auto" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="24" rx="4" fill="#1434CB"/>
+            <path d="M15.2397 16.3413H12.623L10.1123 9.1244C10.0249 8.87261 9.86519 8.65187 9.64824 8.52222C9.02274 8.13226 8.31542 7.83282 7.5249 7.65869V7.30775H11.8325C12.3711 7.30775 12.7267 7.74219 12.8103 8.19471L13.984 13.2823L16.153 7.30775H18.6814L15.2397 16.3413Z" fill="white"/>
+            <path d="M19.2202 16.3413H16.7726L18.7628 7.30775H21.2104L19.2202 16.3413Z" fill="white"/>
+            <path d="M26.0933 7.57874C25.5547 7.57874 25.0347 7.74219 24.6792 8.02356C24.0723 8.45799 23.6359 9.16712 23.6359 10.0437C23.6359 11.2766 24.5103 11.982 25.638 12.3332C26.3453 12.5692 26.6822 12.8119 26.6822 13.1801C26.6822 13.7067 26.1436 13.9767 25.4363 13.9767C24.6384 13.9767 23.9496 13.7418 23.3427 13.3535L22.844 15.3655C23.451 15.7537 24.3254 15.9865 25.2183 15.9865C26.9253 15.9865 29.1482 15.223 29.1482 12.9294C29.1482 11.6965 28.2739 10.9169 27.0841 10.5287C26.3768 10.2926 26.0399 10.05 26.0399 9.68137C26.0399 9.19089 26.5784 8.92052 27.2643 8.92052C27.9717 8.92052 28.6374 9.1244 29.1345 9.33441L29.6331 7.3576C29.0679 7.14757 28.3197 7.02865 27.5985 7.02865C27.4466 7.0112 26.6822 7.0112 26.0933 7.57874Z" fill="white"/>
+            <path d="M33.1661 7.30775L31.7932 13.2297L31.5609 14.5333H29.1272L31.6683 7.30775H33.1661Z" fill="white"/>
+          </svg>
+          <svg className="h-8 w-auto" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="24" rx="4" fill="#FF5F00"/>
+            <path d="M14.5 16H25.5V8H14.5V16Z" fill="#FF5F00"/>
+            <path d="M15.2001 12C15.2001 10.3 16.0001 8.8 17.2001 7.8C16.3001 7.1 15.2001 6.8 14.1001 6.8C10.8001 6.8 8.2001 9.2 8.2001 12.1C8.2001 15 10.8001 17.4 14.1001 17.4C15.3001 17.4 16.4001 17 17.2001 16.3C16.0001 15.2 15.2001 13.7 15.2001 12Z" fill="#EB001B"/>
+            <path d="M31.8001 12.1C31.8001 15 29.2001 17.4 25.9001 17.4C24.7001 17.4 23.6001 17 22.8001 16.3C24.0001 15.3 24.8001 13.7 24.8001 12C24.8001 10.3 24.0001 8.8 22.8001 7.8C23.7001 7.1 24.8001 6.8 25.9001 6.8C29.2001 6.8 31.8001 9.2 31.8001 12.1Z" fill="#F79E1B"/>
+          </svg>
+          <svg className="h-8 w-auto" viewBox="0 0 40 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="24" rx="4" fill="#43B02A"/>
+            <path d="M20 7.5L17 16.5H23L26 7.5H20Z" fill="white"/>
+            <path d="M15.5 7.5C14.1193 7.5 13 8.61929 13 10V14C13 15.3807 14.1193 16.5 15.5 16.5H17L20 7.5H15.5Z" fill="white"/>
+            <text x="8" y="19" fill="white" fontSize="6" fontWeight="bold">M-PESA</text>
+          </svg>
+        </div>
+      </div>
+      
+      <div className="mt-2">
+        <div className="flex space-x-4">
+          <div 
+            className={`flex-1 p-3 border rounded-md cursor-pointer ${paymentMethod === 'card' ? 'border-purple-500 bg-purple-50' : 'border-gray-300'}`}
+            onClick={() => setPaymentMethod('card')}
+          >
+            <div className="flex items-center">
+              <input
+                type="radio"
+                id="cardPayment"
+                name="paymentMethod"
+                value="card"
+                checked={paymentMethod === 'card'}
+                onChange={() => setPaymentMethod('card')}
+                className="h-4 w-4 text-purple-600"
+              />
+              <label htmlFor="cardPayment" className="ml-2 block text-sm font-medium text-gray-700">
+                Credit/Debit Card
+              </label>
+            </div>
+          </div>
+          
+          <div 
+            className={`flex-1 p-3 border rounded-md cursor-pointer ${paymentMethod === 'mpesa' ? 'border-purple-500 bg-purple-50' : 'border-gray-300'}`}
+            onClick={() => setPaymentMethod('mpesa')}
+          >
+            <div className="flex items-center">
+              <input
+                type="radio"
+                id="mpesaPayment"
+                name="paymentMethod"
+                value="mpesa"
+                checked={paymentMethod === 'mpesa'}
+                onChange={() => setPaymentMethod('mpesa')}
+                className="h-4 w-4 text-purple-600"
+              />
+              <label htmlFor="mpesaPayment" className="ml-2 block text-sm font-medium text-gray-700">
+                M-Pesa
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    {paymentMethod === 'card' && (
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="cardName" className="block text-sm font-medium text-gray-700 mb-1">
+            Name on Card *
+          </label>
+          <input
+            type="text"
+            id="cardName"
+            name="cardName"
+            value={formData.cardName}
+            onChange={handleInputChange}
+            required
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
+          />
+        </div>
+        
+        <div>
+          <label htmlFor="cardNumber" className="block text-sm font-medium text-gray-700 mb-1">
+            Card Number *
+          </label>
+          <div className="relative">
+            <input
+              type="text"
+              id="cardNumber"
+              name="cardNumber"
+              value={formData.cardNumber}
+              onChange={handleInputChange}
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
+              placeholder="1234 5678 9012 3456"
+            />
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+              <svg className="h-5 w-auto" viewBox="0 0 24 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="24" height="16" rx="2" fill="#F3F4F6"/>
+                <path d="M7 10.5V11.5H6V10.5H7ZM10 10.5V11.5H8V10.5H10Z" fill="#6B7280"/>
+                <path d="M13 10.5V11.5H11V10.5H13ZM16 10.5V11.5H14V10.5H16Z" fill="#6B7280"/>
+                <path d="M19 10.5V11.5H17V10.5H19Z" fill="#6B7280"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-2 gap-4">
+          <div>
+            <label htmlFor="expiryDate" className="block text-sm font-medium text-gray-700 mb-1">
+              Expiry Date *
+            </label>
+            <input
+              type="text"
+              id="expiryDate"
+              name="expiryDate"
+              value={formData.expiryDate}
+              onChange={handleInputChange}
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
+              placeholder="MM/YY"
+            />
+          </div>
+          
+          <div>
+            <label htmlFor="cvv" className="block text-sm font-medium text-gray-700 mb-1">
+              CVV *
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                id="cvv"
+                name="cvv"
+                value={formData.cvv}
+                onChange={handleInputChange}
+                required
+                className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
+                placeholder="123"
+              />
+              <button
+                type="button"
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                title="CVV is the 3-digit security code on the back of your card"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div className="flex items-center mt-6">
+          <input
+            type="checkbox"
+            id="saveCard"
+            className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+          />
+          <label htmlFor="saveCard" className="ml-2 block text-sm text-gray-700">
+            Save card details securely for next purchase
+          </label>
+        </div>
+      </div>
+    )}
+    
+    {paymentMethod === 'mpesa' && (
+      <div className="space-y-4">
+        <div>
+          <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700 mb-1">
+            M-Pesa Phone Number *
+          </label>
+          <div className="relative">
+            <input
+              type="tel"
+              id="phoneNumber"
+              name="phoneNumber"
+              value={formData.phoneNumber || ''}
+              onChange={handleInputChange}
+              required
+              className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-purple-300 focus:border-purple-500 outline-none transition-all"
+              placeholder="0712345678"
+            />
+            <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+              </svg>
+            </div>
+          </div>
+          <p className="text-xs text-gray-500 mt-1">Enter the phone number registered with M-Pesa</p>
+        </div>
+        
+        <div className="bg-green-50 p-4 rounded-md border border-green-200">
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <p className="text-sm text-green-700">
+                You will receive an M-Pesa payment request on your phone. Enter your M-Pesa PIN to complete the payment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+    
+    <div className="mt-6">
+      <Button 
+        type="submit" 
+        variant="primary" 
+        fullWidth
+        className="bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-md hover:from-purple-600 hover:to-pink-600 transform hover:-translate-y-1 transition-all duration-300"
+      >
+        <span className="flex items-center justify-center">
+          <span>Complete Order</span>
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fillRule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+          </svg>
+        </span>
+      </Button>
+    </div>
+    
+    <div className="mt-4 text-center">
+      <p className="text-xs text-gray-500 flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+        Your payment information is encrypted and secure
+      </p>
+    </div>
+  </form>
+)}
               </div>
             </div>
             

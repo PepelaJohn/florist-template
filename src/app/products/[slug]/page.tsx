@@ -29,7 +29,7 @@ const products: Product[] = [
     name: 'Paperwhite Narcissus',
     slug: 'paperwhite-narcissus',
     description: 'Elegant white narcissus flowers with a delicate fragrance. These classic beauties symbolize rebirth and new beginnings, making them perfect for celebratory occasions.',
-    price: 28.50,
+    price: 2850,
     colors: 3,
     images: ['/images/12.jpeg', '/images/14.jpeg'],
     category: 'seasonal',
