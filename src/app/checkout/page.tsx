@@ -1,5 +1,5 @@
 'use client'
-import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState, useEffect } from 'react';
+import {  useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Layout from '../../components/layout/Layout';
 import { useCart } from '../../context/CartContext';
@@ -7,7 +7,13 @@ import Button from '../../components/ui/Button';
 import Image from 'next/image';
 import { StaticImport } from 'next/dist/shared/lib/get-img-props';
 import { motion } from 'framer-motion';
-
+interface CartItem {
+  productId: string | number;
+  image: string | StaticImport;
+  name: string;
+  quantity: number;
+  price: number;
+}
 export default function Checkout() {
   const { cart, cartTotal, clearCart } = useCart();
   const router = useRouter();
@@ -42,7 +48,7 @@ export default function Checkout() {
     // Process payment and order here
     // For demo, we'll just simulate a successful order
     clearCart();
-    const orderId = 'ORD' + Math.floor(Math.random() * 1000000);
+    // const orderId = 'ORD' + Math.floor(Math.random() * 1000000);
     router.push(`/`);
   };
 
@@ -739,7 +745,7 @@ export default function Checkout() {
                 <h2 className="text-xl font-medium mb-4 pb-2 border-b border-gray-200">Order Summary</h2>
                 
                 <div className="space-y-4 mb-6">
-                  {cart.map((item: { productId: Key | null | undefined; image: string | StaticImport; name: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; quantity: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; price: number; }) => (
+                  {cart.map((item: CartItem) => (
                     <div key={item.productId} className="flex items-start">
                       <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-md border border-gray-200 shadow-sm">
                         <Image 

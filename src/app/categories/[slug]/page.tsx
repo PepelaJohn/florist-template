@@ -4,6 +4,7 @@ import ProductCard from '@/components/ui/ProductCard';
 import { Category } from '@/types/category';
 import { Product } from '@/types/product';
 import { notFound } from 'next/navigation';
+import React, { Usable } from 'react';
 
 interface CategoryPageProps {
   params: {
@@ -11,7 +12,6 @@ interface CategoryPageProps {
   };
 }
 
-// Mock data (you could move this to a separate file or fetch from an API)
  const categories: Category[] = [
     {
       id: '1',
@@ -164,45 +164,38 @@ const allProducts: Product[] = [
     category: 'vases',
   },
 ];
-
-export async function generateStaticParams() {
-  return categories.map((category) => ({
-    slug: category.slug,
-  }));
-}
-
-export default async function CategoryPage({ params }: CategoryPageProps) {
-  const category = categories.find((c) => c.slug === params.slug);
-
+export default function CategoryPage({ params }: CategoryPageProps) {
+  const {slug} = React.use(params as unknown as Usable<{slug:string}>)
+  const category = categories.find((c) => c.slug === slug);
   if (!category) {
-    notFound();
+    notFound(); // shows the 404 page
   }
 
-  let products: Product[];
+  let products: Product[] = [];
 
-  if (params.slug === 'same-day') {
+  if (slug === 'same-day') {
     products = allProducts.slice(0, 6);
-  } else if (['occasions', 'events'].includes(params.slug)) {
+  } else if (['occasions', 'events'].includes(slug)) {
     products = allProducts.filter((_, index) => index % 2 === 0);
   } else {
-    products = allProducts.filter((p) => p.category === params.slug);
+    products = allProducts.filter((p) => p.category === slug);
   }
 
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl font-medium text-center mb-2">{category.name}</h1>
-
-      {category.description && (
-        <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">{category.description}</p>
-      )}
-
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <h1 className="text-2xl font-medium text-center mb-2">{category.name}</h1>
+        {category.description && (
+          <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+            {category.description}
+          </p>
+        )}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
       </div>
-    </div>
     </Layout>
   );
 }

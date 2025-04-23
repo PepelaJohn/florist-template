@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 
 interface Testimonial {
   id: string;
@@ -55,7 +55,7 @@ export default function Testimonials() {
               <div className="flex justify-center mb-3">
                 {renderStars(testimonial.stars)}
               </div>
-              <p className="text-center text-black  -600 mb-4 italic">"{testimonial.quote}"</p>
+              <p className="text-center text-black  -600 mb-4 italic">&quot;{testimonial.quote}&quot;</p>
               <p className="text-center font-medium">{testimonial.name}</p>
             </div>
           ))}
