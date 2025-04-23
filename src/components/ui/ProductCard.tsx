@@ -38,7 +38,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       </div>
       
       {product.colors > 0 && (
-        <div className="absolute top-2 left-2 bg-white text-xs px-1.5 py-0.5">
+        <div className="absolute top-2 left-2 bg-red-200 text-black text-xs px-1.5 py-0.5">
           {product.colors} COLOURS
         </div>
       )}
@@ -53,7 +53,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <Link href={`/products/${product.slug}`} className="uppercase text-sm font-medium">
           {product.name}
         </Link>
-        <span className="text-sm">FROM £{product.price.toFixed(2)}</span>
+        <span className="text-sm">FROM  KES {product.price.toFixed(2)}</span>
       </div>
       
       <div className="mt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -62,6 +62,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           size="sm" 
           fullWidth
           onClick={handleAddToCart}
+          className='!border border-gray-300'
         >
           Add to Cart
         </Button>

@@ -58,7 +58,7 @@ export default function Cart() {
                     
                     <div className="md:col-span-2 text-center mt-4 md:mt-0">
                       <span className="md:hidden text-sm text-black  -500 mr-2">Price:</span>
-                      <span>£{item.price.toFixed(2)}</span>
+                      <span> KES {item.price.toFixed(2)}</span>
                     </div>
                     
                     <div className="md:col-span-2 flex justify-center mt-4 md:mt-0">
@@ -81,7 +81,7 @@ export default function Cart() {
                     
                     <div className="md:col-span-2 text-right mt-4 md:mt-0">
                       <span className="md:hidden text-sm text-black  -500 mr-2">Total:</span>
-                      <span className="font-medium">£{(item.price * item.quantity).toFixed(2)}</span>
+                      <span className="font-medium"> KES {(item.price * item.quantity).toFixed(2)}</span>
                     </div>
                   </div>
                 ))}
@@ -96,7 +96,7 @@ export default function Cart() {
                 <div className="space-y-2 mb-4">
                   <div className="flex justify-between">
                     <p className="text-black  -500">Subtotal</p>
-                    <p>£{cartTotal.toFixed(2)}</p>
+                    <p> KES {cartTotal.toFixed(2)}</p>
                   </div>
                   <div className="flex justify-between">
                     <p className="text-black  -500">Shipping</p>
@@ -107,7 +107,7 @@ export default function Cart() {
                 <div className="border-t border-gray-200 pt-4 mb-6">
                   <div className="flex justify-between text-lg font-medium">
                     <p>Total</p>
-                    <p>£{cartTotal.toFixed(2)}</p>
+                    <p> KES {cartTotal.toFixed(2)}</p>
                   </div>
                 </div>
                 

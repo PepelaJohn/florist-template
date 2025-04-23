@@ -23,7 +23,7 @@ export default function FeaturedProducts({ products, title = "FLOWERS PICKS: OUR
         
         <div className="text-center mt-8">
           <Link href="/products" passHref>
-            <Button variant="outline">View All Flowers</Button>
+            <Button className='text-white hover:text-black' variant="outline">View All Flowers</Button>
           </Link>
         </div>
       </div>

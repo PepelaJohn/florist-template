@@ -11,7 +11,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky text-black top-0 z-50 bg-white shadow-sm">
+    <header className="sticky text-black top-0 left-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-2">
         <div className="flex items-center justify-end">
           
@@ -27,8 +27,8 @@ export default function Header() {
           </button>
           
           {/* Logo for mobile */}
-          <div className="md:hidden">
-            <Link href="/" className="font-semibold text-xl">FLOWERBOX</Link>
+          <div className="md:hidden relative">
+            <Link href="/" className="font-semibold text-xl uppercase">{process.env.NEXT_PUBLIC_NAME}</Link>
           </div>
           
           {/* Cart and account icons */}
@@ -56,17 +56,18 @@ export default function Header() {
         
         {/* Desktop navigation */}
         <div className="hidden md:block">
-          <div className="flex justify-center py-4">
-            <Link href="/" className="font-semibold text-2xl">FLOWERBOX</Link>
+          <div className="flex justify-center  py-4">
+            
+            <Link href="/" className="font-semibold text-2xl uppercase">{process.env.NEXT_PUBLIC_NAME}</Link>
+            
           </div>
           <nav className="flex justify-center text-black  -900 space-x-8 pb-2">
             <Link href="/products" className="uppercase text-sm font-medium hover:text-black  -950">Flowers</Link>
             <Link href="/categories/same-day" className="uppercase text-sm font-medium hover:text-black  -950">Express Delivery</Link>
-            <Link href="/subscriptions" className="uppercase text-sm font-medium hover:text-black  -950">Subscriptions</Link>
             <Link href="/categories/occasions" className="uppercase text-sm font-medium hover:text-black  -950">Occasions</Link>
             <Link href="/categories/vases" className="uppercase text-sm font-medium hover:text-black  -950">Vases</Link>
             <Link href="/categories/events" className="uppercase text-sm font-medium hover:text-black  -950">Events</Link>
-            <Link href="/services" className="uppercase text-sm font-medium hover:text-black  -950">Bespoke Services</Link>
+           
           </nav>
         </div>
         

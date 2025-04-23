@@ -12,7 +12,7 @@ interface LayoutProps {
 
 export default function Layout({ 
   children, 
-  title = 'FlowerBX | Luxury Flowers Delivered', 
+  title = `${process.env.NEXT_PUBLIC_NAME} | Luxury Flowers `, 
   description = 'Shop beautiful luxury flowers with next day delivery. Fresh flowers for any occasion.'
 }: LayoutProps) {
   return (

@@ -7,7 +7,7 @@ export default function Services() {
   return (
     <section className="py-12 bg-[#f4f4f4] text-black">
       <div className="container mx-auto px-4">
-        <h2 className="text-center text-xl uppercase mb-8">DISCOVER THE WORLD OF FLOWERBOX</h2>
+        <h2 className="text-center text-xl uppercase mb-8">DISCOVER THE WORLD OF </h2>
         
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8  mx-auto">
           <div className="flex flex-col items-center text-center">
@@ -75,7 +75,7 @@ export default function Services() {
       <div className="container mx-auto px-4 mt-16">
         <h2 className="text-center text-xl uppercase mb-8">FIND YOUR FLOWER SUBSCRIPTION</h2>
         <p className="text-center max-w-2xl mx-auto mb-6">
-          Enjoy fresh flowers, delivered on repeat, without lifting a finger. Choose between weekly or biweekly deliveries from £35
+          Enjoy fresh flowers, delivered on repeat, without lifting a finger. Choose between weekly or biweekly deliveries from  KES 350
         </p>
         <div className="text-center">
           <Link href="/subscriptions" passHref>

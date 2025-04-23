@@ -65,7 +65,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                       <div className="ml-4 flex flex-1 flex-col">
                         <div className="flex justify-between">
                           <h3 className="text-sm font-medium">{item.name}</h3>
-                          <p className="text-sm font-medium">£{(item.price * item.quantity).toFixed(2)}</p>
+                          <p className="text-sm font-medium"> KES {(item.price * item.quantity).toFixed(2)}</p>
                         </div>
                         
                         <div className="flex items-center justify-between mt-4">
@@ -103,7 +103,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-black  -900 mb-4">
                   <p>Subtotal</p>
-                  <p>£{cartTotal.toFixed(2)}</p>
+                  <p> KES {cartTotal.toFixed(2)}</p>
                 </div>
                 <p className="text-sm text-black  -500 mb-4">
                   Shipping and taxes calculated at checkout.
