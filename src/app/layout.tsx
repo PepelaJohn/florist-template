@@ -19,11 +19,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${process.env.NEXT_PUBLIC_NAME} | Luxury Flowers`,
     description: 'Shop beautiful luxury flowers with next day delivery. Fresh flowers for any occasion.',
-    url: 'https://bloomnpetal-shop.netlify.app/"', // Replace with your actual URL
+    url: 'https://bloomnpetal-shop.netlify.app/', // Replace with your actual URL
     siteName: process.env.NEXT_PUBLIC_NAME || 'Luxury Flowers',
     images: [
       {
-        url: 'https://bloomnpetal-shop.netlify.app/preview.png"', // Replace with your actual OG image
+        url: 'https://bloomnpetal-shop.netlify.app/preview.png', // Replace with your actual OG image
         width: 1200,
         height: 630,
         alt: 'Luxury Flowers – Fresh blooms delivered',
@@ -31,6 +31,12 @@ export const metadata: Metadata = {
     ],
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: "summary_large_image",
+    title:  `${process.env.NEXT_PUBLIC_NAME} | Luxury Flowers`,
+    description: 'Shop beautiful luxury flowers with next day delivery. Fresh flowers for any occasion.',
+    images: ['https://bloomnpetal-shop.netlify.app/preview.png'],
   },
 };
 
