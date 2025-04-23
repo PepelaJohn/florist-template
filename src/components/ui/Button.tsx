@@ -27,7 +27,7 @@ export default function Button({
   const variantClasses = {
     primary: 'bg-gray-100 text-black  -900 hover:bg-gray-200',
     secondary: 'bg-gray-100 text-black  -900 hover:bg-gray-200',
-    outline: 'border border-gray-300 text-black  -700 hover:bg-gray-50'
+    outline: 'border border-gray-300 text-black   hover:bg-gray-50'
   };
   
   const sizeClasses = {

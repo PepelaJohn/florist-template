@@ -44,7 +44,7 @@ export default function Subscriptions() {
             <h3 className="uppercase font-medium mb-2">The Signature Subscription</h3>
             <p className="text-sm mb-4">Perfect for: Bright, long-lasting seasonal blooms</p>
             <Link href="/subscriptions/signature" passHref>
-              <Button variant="outline" className='text-white hover:text-black' size="sm">Shop Now</Button>
+              <Button  className='text-black hover:text-white bg-white hover:bg-black' variant="outline" size="sm">Shop Now</Button>
             </Link>
           </div>
           
@@ -52,7 +52,7 @@ export default function Subscriptions() {
             <h3 className="uppercase font-medium mb-2">The Prestige Subscription</h3>
             <p className="text-sm mb-4">Perfect for: Flower lovers with professional styling</p>
             <Link href="/subscriptions/prestige" passHref>
-            <Button variant="outline" className='text-white hover:text-black' size="sm">Shop Now</Button>
+            <Button  className='text-black hover:text-white bg-white hover:bg-black' variant="outline" size="sm">Shop Now</Button>
             </Link>
           </div>
           
@@ -60,7 +60,7 @@ export default function Subscriptions() {
             <h3 className="uppercase font-medium mb-2">The Seasonal Subscription</h3>
             <p className="text-sm mb-4">New seasonal floral selects every month</p>
             <Link href="/subscriptions/seasonal" passHref>
-            <Button variant="outline" className='text-white hover:text-black' size="sm">Shop Now</Button>
+            <Button  className='text-black hover:text-white bg-white hover:bg-black' variant="outline" size="sm">Shop Now</Button>
             </Link>
           </div>
         </div>
