@@ -10,7 +10,7 @@ interface CategoriesProps {
 
 export default function Categories({ categories, title = "SHOP TRENDING CATEGORIES" }: CategoriesProps) {
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-12 bg-gray-50 text-black">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-xl uppercase mb-8">{title}</h2>
         

@@ -68,12 +68,12 @@ export default function Subscriptions() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
           <div className="relative h-64 md:h-96">
             <Image
-              src="/images/edits/super-bouquets.jpg" 
+              src="/images/8.jpeg" 
               alt="Super Bouquets" 
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+            <div className="absolute inset-0 bg-black/20"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <h3 className="text-white text-2xl font-light uppercase tracking-wider">Super Bouquets</h3>
             </div>
@@ -81,12 +81,12 @@ export default function Subscriptions() {
           
           <div className="relative h-64 md:h-96">
             <Image
-              src="/images/edits/new-season-tulips.jpg" 
+              src="/images/15.jpeg" 
               alt="New Season Tulips" 
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+            <div className="absolute inset-0 bg-black/20"></div>
             <div className="absolute inset-0 flex items-center justify-center">
               <h3 className="text-white text-2xl font-light uppercase tracking-wider">New Season Tulips</h3>
             </div>

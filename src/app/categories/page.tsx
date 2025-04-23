@@ -10,7 +10,7 @@ export default async function CategoriesPage() {
       id: '1',
       name: 'Seasonal',
       slug: 'seasonal',
-      image: '/images/10.jpeg',
+      image: '/images/7.jpeg',
       description: 'Our selection of the finest seasonal blooms'
     },
     {
@@ -38,7 +38,7 @@ export default async function CategoriesPage() {
       id: '5',
       name: 'Occasions',
       slug: 'occasions',
-       image: '/images/10.jpeg',
+       image: '/images/9.jpeg',
       description: 'Perfect arrangements for birthdays, anniversaries, and more'
     },
     {
@@ -49,12 +49,11 @@ export default async function CategoriesPage() {
 
       description: 'Beautiful flowers for weddings, corporate events, and special gatherings'
     },
-    
     {
       id: '7',
       name: 'Vases',
       slug: 'vases',
-       image: '/images/11.jpeg',
+       image: '/images/11.png',
 
       description: 'Beautiful flowers for weddings, corporate events, and special gatherings'
     }
@@ -79,7 +78,7 @@ export default async function CategoriesPage() {
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-20 flex items-center justify-center">
+                <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
                   <h2 className="text-white text-2xl font-light uppercase tracking-wider">{category.name}</h2>
                 </div>
               </div>

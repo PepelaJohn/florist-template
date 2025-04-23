@@ -17,7 +17,7 @@ interface CategoryPageProps {
       id: '1',
       name: 'Seasonal',
       slug: 'seasonal',
-      image: '/images/10.jpeg',
+      image: '/images/7.jpeg',
       description: 'Our selection of the finest seasonal blooms'
     },
     {
@@ -45,7 +45,7 @@ interface CategoryPageProps {
       id: '5',
       name: 'Occasions',
       slug: 'occasions',
-       image: '/images/10.jpeg',
+       image: '/images/9.jpeg',
       description: 'Perfect arrangements for birthdays, anniversaries, and more'
     },
     {
@@ -60,7 +60,7 @@ interface CategoryPageProps {
       id: '7',
       name: 'Vases',
       slug: 'vases',
-       image: '/images/11.jpeg',
+       image: '/images/11.png',
 
       description: 'Beautiful flowers for weddings, corporate events, and special gatherings'
     }

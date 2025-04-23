@@ -67,6 +67,7 @@ export default function Header() {
             <Link href="/categories/occasions" className="uppercase text-sm font-medium hover:text-black  -950">Occasions</Link>
             <Link href="/categories/vases" className="uppercase text-sm font-medium hover:text-black  -950">Vases</Link>
             <Link href="/categories/events" className="uppercase text-sm font-medium hover:text-black  -950">Events</Link>
+            <Link href="/categories" className="uppercase text-sm font-medium hover:text-black  -950">Categories</Link>
            
           </nav>
         </div>
@@ -81,20 +82,14 @@ export default function Header() {
               <Link href="/categories/same-day" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
                 Express Delivery
               </Link>
-              <Link href="/subscriptions" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
-                Subscriptions
-              </Link>
-              <Link href="/categories/occasions" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
-                Occasions
-              </Link>
               <Link href="/categories/vases" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
                 Vases
               </Link>
               <Link href="/categories/events" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
                 Events
               </Link>
-              <Link href="/services" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
-                Bespoke Services
+              <Link href="/categories" className="uppercase text-sm font-medium" onClick={() => setIsMenuOpen(false)}>
+              Categories
               </Link>
             </nav>
           </div>
